@@ -10,10 +10,28 @@ export const navItems: INavData[] = [
       text: 'NEW'
     }
   },
+
   {
     title: true,
-    name: 'Theme'
+    name: 'LOCATIONS'
   },
+  {
+    name: 'Locations',
+    url: '/locations/locations',
+    icon: 'icon-drop'
+  },
+  {
+    name: 'Vehicules',
+    url: '/locations/vehicules',
+    icon: 'icon-drop'
+  }
+ ,
+   {
+    name: 'Clients',
+    url: '/locations/clients',
+    icon: 'icon-drop'
+  }
+   /*,
   {
     name: 'Colors',
     url: '/theme/colors',
@@ -247,5 +265,5 @@ export const navItems: INavData[] = [
     icon: 'icon-layers',
     variant: 'danger',
     attributes: { target: '_blank', rel: 'noopener' }
-  }
+  }*/
 ];
