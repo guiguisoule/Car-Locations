@@ -31,7 +31,7 @@ export const navItems: INavData[] = [
     url: '/locations/clients',
     icon: 'icon-drop'
   }
-   ,
+   /*,
   {
     name: 'Colors',
     url: '/theme/colors',
@@ -265,5 +265,5 @@ export const navItems: INavData[] = [
     icon: 'icon-layers',
     variant: 'danger',
     attributes: { target: '_blank', rel: 'noopener' }
-  }
+  }*/
 ];
