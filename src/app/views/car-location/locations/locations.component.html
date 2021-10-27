@@ -111,7 +111,7 @@
                     <mat-label>Client</mat-label>
 
                     <select  matNativeControl [(ngModel)]="locationEdite.idClient" name="idClient" required>
-                      <option *ngFor="let cl of clientList" value="{{cl.nom cl.prenom}}">{{cl.nom cl.prenom}}</option>
+                      <option *ngFor="let cl of clientList" value="{{cl.id}}">{{cl.nom}} {{cl.prenom}}</option>
                     </select>
                     
                 </mat-form-field>
