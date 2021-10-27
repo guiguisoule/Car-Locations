@@ -2,6 +2,8 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { VehiculeData } from './vehicule.model';
+import { VehiculesService } from './vehicules.service';
 
 @Component({
   selector: 'app-vehicules',
@@ -10,51 +12,120 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class VehiculesComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['code', 'cnib', 'matricule', 'star'];
+  displayedColumns: string[] = ['matricule', 'type', 'marque', 'couleur', 'place', 'montantLocation', 'etat', 'star'];
   dataSource: MatTableDataSource<Object[]>;
+
+  clientList : any [] = [];
+
+  // declaration des variables de la table Client
+  vehicule : VehiculeData = new VehiculeData();
+  vehiculeEdite : VehiculeData = new VehiculeData();
 
   //creation d'un instance de pays connecte au formulaire d'ajout
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() { 
-    this.chargerListeLocation();
+  constructor(
+    private vehiculeService: VehiculesService) { 
+      
+      this.chargerListeVehicule();
+
   }
 
   ngOnInit(): void {
-    
+
   }
 
-  chargerListeLocation(){
-    // this.locationService.getPaysList().subscribe(
-    //   responce => {
-    //     // console.log(responce)
+  chargerListeVehicule(){
+    this.vehiculeService.getVehiculeList().subscribe(
+      responce => {
+        // console.log(responce)
         
-    //     const paysData = responce;
-    //     // Assign the data to the data source for the table to render
-    //     this.dataSource = new MatTableDataSource(paysData);
+        const dataList = responce;
+        // Assign the data to the data source for the table to render
+        this.dataSource = new MatTableDataSource(dataList);
 
-    //     this.dataSource.paginator = this.paginator;
-    //     this.dataSource.sort = this.sort;
-    //   },
-    //   error => {
-    //     console.log(error);
-    //     const paysData = [];
-    //     // Assign the data to the data source for the table to render
-    //     this.dataSource = new MatTableDataSource(paysData);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      },
+      error => {
+        console.log(error);
+        const dataList = [];
+        // Assign the data to the data source for the table to render
+        this.dataSource = new MatTableDataSource(dataList);
 
-    //     this.dataSource.paginator = this.paginator;
-    //     this.dataSource.sort = this.sort;
-    //   });
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
   }
 
-  onEdite(){
-
-  }
 
   onSave(){
 
+    this.vehiculeService.createVehicule(this.vehicule).subscribe(
+      responce => {
+        console.log(responce);
+        this.chargerListeVehicule();
+      },
+      err => {
+        console.log(err);
+      }
+    );
+
+  }
+
+  onSaveEdite(){
+
+    this.vehiculeService.updateVehicule(this.vehiculeEdite).subscribe(
+      responce => {
+        console.log(responce);
+        this.chargerListeVehicule();
+      },
+      err => {
+        console.log(err);
+      }
+    );
+
+  }
+
+  onEdite(id : string){
+    this.vehiculeService.getVehicule(id).subscribe(
+      responce => {
+        console.log(responce);
+        this.vehiculeEdite.couleur = responce[0].couleur;
+        this.vehiculeEdite.dateCre = responce[0].dateCre;
+        this.vehiculeEdite.dateMaj = new Date();
+        this.vehiculeEdite.etat = responce[0].etat;
+        this.vehiculeEdite.image = responce[0].image;
+        this.vehiculeEdite.marque = responce[0].marque;
+        this.vehiculeEdite.matricule = responce[0].matricule;
+        this.vehiculeEdite.montantLocation = responce[0].montantLocation;
+        this.vehiculeEdite.place = responce[0].place;
+        this.vehiculeEdite.serie = responce[0].serie;
+        this.vehiculeEdite.status = responce[0].status;
+        this.vehiculeEdite.type = responce[0].type;
+
+        console.log(this.vehiculeEdite);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  onDelete(id : string){
+    console.log(id);
+    this.vehiculeService.deleteVehicule(id).subscribe(
+      responce => {
+        console.log("supression effetuer avec succes");
+        this.chargerListeVehicule();
+      },
+      err => {
+        console.log("supression ");
+        console.log(err);
+      }
+    );
   }
 
   ngAfterViewInit() {

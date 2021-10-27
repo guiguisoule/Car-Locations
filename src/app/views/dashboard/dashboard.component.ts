@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
+import { LocationsService } from '../car-location/locations/locations.service';
+import { ClientService } from '../car-location/clients/client.service';
+import { VehiculesService } from '../car-location/vehicules/vehicules.service';
 
 @Component({
   templateUrl: 'dashboard.component.html'
@@ -9,6 +12,21 @@ export class DashboardComponent implements OnInit {
 
   radioModel: string = 'Month';
 
+  nbClient: string = '0';
+  nbVehicule: string = '0';
+  vConclus: string = '0';
+  vCours: string = '0';
+  nbDisponible: string = '0';
+  recette: string = '0';
+
+  constructor(
+    private locationService: LocationsService,
+    private clientService: ClientService,
+    private vehiculeService: VehiculesService) { 
+      
+
+  }
+
   // lineChart1
   public lineChart1Data: Array<any> = [
     {
@@ -16,6 +34,9 @@ export class DashboardComponent implements OnInit {
       label: 'Series A'
     }
   ];
+
+
+
   public lineChart1Labels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   public lineChart1Options: any = {
     tooltips: {
@@ -384,5 +405,44 @@ export class DashboardComponent implements OnInit {
       this.mainChartData2.push(this.random(80, 100));
       this.mainChartData3.push(65);
     }
+
+    this.locationService.getLocationCoursList().subscribe(
+      responce => {
+
+        this.vCours = responce.length;
+
+        responce.forEach(element => {
+          this.recette = (parseInt(this.recette) + parseInt(element['montantVerse'])).toString();
+        });
+
+        this.clientService.getClientList().subscribe(
+          respC => {
+            this.nbClient = respC.length;
+
+            this.vehiculeService.getVehiculeList().subscribe(
+              respV => {
+                this.nbVehicule = respV.length;
+
+                this.nbDisponible = (parseInt(this.nbVehicule) - parseInt(this.vCours)).toString();
+
+
+              },
+              errV => {
+                console.log(errV);
+              }
+            );
+          },
+          errC => {
+            console.log(errC);
+          }
+        );
+      },
+      err => {
+        console.log(err);
+      }
+    );
+
+    this.nbDisponible = (parseInt(this.nbVehicule) - parseInt(this.vCours)).toString();
+
   }
 }

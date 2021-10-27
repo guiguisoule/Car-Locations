@@ -1,150 +1,284 @@
 <div class="animated fadeIn">
-    <!-- Modal Ajouter Location -->
-  <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Pays</h5>
-        </div>
-        <div class="modal-body">
-          <form #modalForm=ngForm>
-            <div class="row">
-                <!-- <div class="col-md-3">
-                  <mat-form-field class="example-full-width">
-                      <input matInput placeholder="ID" [(ngModel)]="paysEdite.id" name="id" disabled>
-                    </mat-form-field>
-                </div>
-                <div class="col-md-5">
-                    <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Pays" [(ngModel)]="paysEdite.nom_pays" name="nom_pays" required>
-                    </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                    <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Capitale" [(ngModel)]="paysEdite.capitale" name="capitale" required>
-                    </mat-form-field>
-                </div> -->
-            </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger"  data-bs-dismiss="modal" >Fermer</button>
-        <button type="button" class="btn btn-primary" [disabled]=!modalForm.valid (click)="onSave()" data-bs-toggle="modal" data-bs-target="#operationModal" data-bs-dismiss="modal">Enregistrer</button>
-      </div>
-    </div>
-    </div>
-  </div>
-  <!-- fin modal -->
 
-  <!-- Modal edit element -->
-  <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Pays</h5>
-        </div>
-        <div class="modal-body">
-          <form #modalEditeForm=ngForm>
-            <div class="row">
-                <!-- <div class="col-md-3">
+  <!-- Modal Ajouter Location -->
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+  <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">AJOUTER UN CLIENT</h5>
+      </div>
+      <div class="modal-body">
+
+        <form #modalCreForm=ngForm >
+          <div class="row">
+              <div class="col-md-3">
+                <mat-form-field class="example-full-width">
+                    <input matInput nom="text" placeholder="N* CNIB" [(ngModel)]="client.cnib" name="cnib" required>
+                  </mat-form-field>
+              </div>
+              <div class="col-md-5">
                   <mat-form-field class="example-full-width">
-                      <input matInput placeholder="ID" [(ngModel)]="paysEdite.id" name="id" disabled>
-                    </mat-form-field>
-                </div>
-                <div class="col-md-5">
-                    <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Pays" [(ngModel)]="paysEdite.nom_pays" name="nom_pays" required>
-                    </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                    <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Capitale" [(ngModel)]="paysEdite.capitale" name="capitale" required>
-                    </mat-form-field>
-                </div> -->
-            </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger"  data-bs-dismiss="modal" >Fermer</button>
-        <button type="button" class="btn btn-primary" [disabled]=!modalEditeForm.valid (click)="onSave()" data-bs-toggle="modal" data-bs-target="#operationModal" data-bs-dismiss="modal">Modiffier</button>
-      </div>
+                    <input matInput nom="text" placeholder="Nom" [(ngModel)]="client.nom" name="nom" required>
+                  </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput nom="text" placeholder="Prenom" [(ngModel)]="client.prenom" name="prenom" required>
+                  </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Sexe" [(ngModel)]="client.sexe" name="sexe" required>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <input matInput nom="date" placeholder="Date de naissance" [(ngModel)]="client.dateBirth" name="dateBirth" required>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <input matInput nom="text" placeholder="Fonction" [(ngModel)]="client.prof" name="prof" required>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <input matInput nom="tel" placeholder="Telephone" [(ngModel)]="client.tel" name="tel" required>
+                </mat-form-field>
+              </div>
+
+          </div>
+      </form>
     </div>
+    <div class="modal-footer">
+      <button nom="button" class="btn btn-danger"  data-bs-dismiss="modal" >Fermer</button>
+      <button nom="submit" class="btn btn-primary" [disabled]=!modalCreForm.valid (click)="onSave()" data-bs-toggle="modal" data-bs-target="#operationModal" data-bs-dismiss="modal">Enregistrer</button>
     </div>
   </div>
-  <!-- fin modal -->
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="card">
-        <div class="card-header">
-          <i class="fa fa-align-justify"></i> LISTE DES LOCATIONS EN COURS
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" (keyup)="applyFilter($event)" placeholder="Recherche Globale" #input><br>
-                </div>
-                <div class="col-sm-2">
-                    <button type="button" class="btn btn-block btn-success active" aria-pressed="true" data-bs-toggle="modal" data-bs-target="#addModal">
-                        Ajouter
-                    </button>
-                </div>
+  </div>
+</div>
+<!-- fin modal -->
+
+<!-- Modal edit element -->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+  <div class="modal-content">
+      <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">MODIFICATION D'UN CLIENT</h5>
+      </div>
+      <div class="modal-body">
+        <form #modalEditeForm=ngForm>
+          <div class="row">
+            <div class="col-md-3">
+              <mat-form-field class="example-full-width">
+                  <input matInput nom="text" placeholder="N* CNIB" [(ngModel)]="clientEdite.cnib" name="cnib" required>
+                </mat-form-field>
             </div>
-            <div class="table-responsive">
-                <div class="mat-elevation-z8">
-                <table mat-table [dataSource]="dataSource" matSort class="table">
-                
-                    <!-- ID Column -->
-                    <ng-container matColumnDef="code">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> CODE </th>
-                    <td mat-cell *matCellDef="let row"> 111 </td>
-                    </ng-container>
-                
-                    <!-- Pays Column -->
-                    <ng-container matColumnDef="cnib">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> CNIB </th>
-                    <td mat-cell *matCellDef="let row"> 111 </td>
-                    </ng-container>
-                
+            <div class="col-md-5">
+                <mat-form-field class="example-full-width">
+                  <input matInput nom="text" placeholder="Nom" [(ngModel)]="clientEdite.nom" name="nom" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <input matInput nom="text" placeholder="Prenom" [(ngModel)]="clientEdite.prenom" name="prenom" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Sexe" [(ngModel)]="clientEdite.sexe" name="sexe" required>
+              </mat-form-field>
+            </div>
+            <div class="col-md-4">
+              <mat-form-field class="example-full-width">
+                <input matInput nom="date" placeholder="Date de naissance" [(ngModel)]="clientEdite.dateBirth" name="dateBirth" required>
+              </mat-form-field>
+            </div>
+            <div class="col-md-4">
+              <mat-form-field class="example-full-width">
+                <input matInput nom="text" placeholder="Fonction" [(ngModel)]="clientEdite.prof" name="prof" required>
+              </mat-form-field>
+            </div>
+            <div class="col-md-4">
+              <mat-form-field class="example-full-width">
+                <input matInput nom="tel" placeholder="Telephone" [(ngModel)]="clientEdite.tel" name="tel" required>
+              </mat-form-field>
+            </div>
+
+        </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button nom="button" class="btn btn-danger"  data-bs-dismiss="modal" >Fermer</button>
+    <button nom="submit" class="btn btn-primary" [disabled]=!modalEditeForm.valid (click)="onSaveEdite()" data-bs-toggle="modal" data-bs-target="#operationModal" data-bs-dismiss="modal">Enregistrer</button>
+  </div>
+  </div>
+  </div>
+</div>
+<!-- fin modal -->
+
+<!-- Modal Delete element -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">SUPRIMER UN CLIENT</h5>
+      </div>
+      <div class="modal-body">
+       
+       <div class="row">
+          <div class="col">
+            <h3>Voulez-vous vraiment supprimer le vehicule</h3>
+          </div>
+       </div>
+       <div class="row">
+         <div class="col">
+          <h2>{{ clientEdite.cnib }}</h2>
+          <h2>{{ clientEdite.nom }}</h2>
+          <h2>{{ clientEdite.prenom }}</h2>
+         </div>
+       </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger"  data-bs-dismiss="modal" >Non</button>
+        <button type="button" class="btn btn-primary" (click)="onDelete(this.clientEdite.cnib)" data-bs-toggle="modal" data-bs-target="#operationModal" data-bs-dismiss="modal">Oui</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- fin modal -->
+
+<!-- Modal Delete element -->
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">DETAIL SUR LE CLIENT</h5>
+      </div>
+      <div class="modal-body">
+       
+       <div class="row">
+          <div class="col">
+            <h3>NOM : {{ clientEdite.nom }} {{ clientEdite.prenom }}</h3>
+          </div>
+       </div>
+       <div class="row">
+         <div class="col">
+          <h2>{{ clientEdite.cnib }}</h2>
+          <h2>{{ clientEdite.sexe }}</h2>
+          <h2>{{ clientEdite.prof }}</h2>
+          <h2>{{ clientEdite.dateBirth }}</h2>
+         </div>
+       </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger"  data-bs-dismiss="modal" >OK</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal" data-bs-dismiss="modal">Modifier</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- fin modal -->
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <i class="fa fa-align-justify"></i> LISTE DES CLIENT
+      </div>
+      <div class="card-body">
+          <div class="row">
+              <div class="col-sm-6">
+                  <input nom="text" class="form-control" (keyup)="applyFilter($event)" placeholder="Recherche Globale" #input><br>
+              </div>
+              <div class="col-sm-2">
+                  <button nom="button" class="btn btn-block btn-success active" aria-pressed="true" data-bs-toggle="modal" data-bs-target="#addModal">
+                      Ajouter
+                  </button>
+              </div>
+          </div>
+          <div class="table-responsive">
+              <div class="mat-elevation-z8">
+              <table mat-table [dataSource]="dataSource" matSort class="table">
+              
+                  <!-- ID Column -->
+                  <ng-container matColumnDef="cnib">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> CNIB </th>
+                  <td mat-cell *matCellDef="let row"> {{ row.cnib }} </td>
+                  </ng-container>
+              
+                  <!-- Pays Column -->
+                  <ng-container matColumnDef="nom">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+                  <td mat-cell *matCellDef="let row"> {{ row.nom }} </td>
+                  </ng-container>
+              
+                  <!-- Capitale Column -->
+                  <ng-container matColumnDef="prenom">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Prenom </th>
+                  <td mat-cell *matCellDef="let row"> {{ row.prenom }} </td>
+                  </ng-container>
+
+                  <!-- Capitale Column -->
+                  <ng-container matColumnDef="sexe">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Sexe </th>
+                    <td mat-cell *matCellDef="let row"> {{ row.sexe }} </td>
+                  </ng-container>
+
                     <!-- Capitale Column -->
-                    <ng-container matColumnDef="matricule">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> MATRICULE </th>
-                    <td mat-cell *matCellDef="let row"> 111 </td>
-                    </ng-container>
+                  <ng-container matColumnDef="prof">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Prof </th>
+                    <td mat-cell *matCellDef="let row"> {{ row.prof }} </td>
+                  </ng-container>
 
-                    <!-- Star Column -->
-                    <ng-container matColumnDef="star" stickyEnd>
-                    <th mat-header-cell *matHeaderCellDef>Option</th>
-                    <td mat-cell *matCellDef="let row">
-                        <button mat-icon-button color="primary" [matMenuTriggerFor]="menuOption" aria-label="Option de la ligne selectionne">
+                  <ng-container matColumnDef="tel">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> tel </th>
+                    <td mat-cell *matCellDef="let row"> {{ row.tel }} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="dateBirth">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de Naissance </th>
+                    <td mat-cell *matCellDef="let row"> {{ row.dateBirth }} </td>
+                  </ng-container>
+
+                  <!-- Star Column -->
+                  <ng-container matColumnDef="star" stickyEnd>
+                  <th mat-header-cell *matHeaderCellDef>Option</th>
+                  <td mat-cell *matCellDef="let row">
+                      <button mat-icon-button color="primary" [matMenuTriggerFor]="menuOption" aria-label="Option de la ligne selectionne">
                         <mat-icon>more_vert</mat-icon>
-                        </button>
-                        <mat-menu #menuOption="matMenu">
-                        <button mat-menu-item data-bs-toggle="modal" data-bs-target="#afficheModal" (click)="onEdite(row.id)">
-                            <mat-icon>description</mat-icon>
-                            <span>Afficher</span>
-                        </button>
-                        <button mat-menu-item data-bs-toggle="modal" data-bs-target="#myModal" (click)="onEdite(row.id)">
-                            <mat-icon>app_registration</mat-icon>
-                            <span>Modifier</span>
-                        </button>
-                        </mat-menu>
-                    </td>
-                    </ng-container>
-                
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                
-                    <!-- Row shown when there is no matching data. -->
-                    <tr class="mat-row" *matNoDataRow>
-                    <td class="mat-cell" colspan="4">aucune correspondance trouvée pour les critères de recherche spécifiés "{{input.value}}"</td>
-                    </tr>
-                </table>
-                
-                <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
-                </div>
-            </div>
-        </div>
+                      </button>
+                      <mat-menu #menuOption="matMenu">
+                      <button mat-menu-item data-bs-toggle="modal" data-bs-target="#detailModal" (click)="onEdite(row.cnib)">
+                          <mat-icon>description</mat-icon>
+                          <span>Afficher</span>
+                      </button>
+                      <button mat-menu-item data-bs-toggle="modal" data-bs-target="#updateModal" (click)="onEdite(row.cnib)">
+                          <mat-icon>app_registration</mat-icon>
+                          <span>Modifier</span>
+                      </button>
+                      <button mat-menu-item data-bs-toggle="modal" data-bs-target="#deleteModal" (click)="onEdite(row.cnib)">
+                        <mat-icon>app_registration</mat-icon>
+                        <span>Supprimer</span>
+                    </button>
+                      </mat-menu>
+                  </td>
+                  </ng-container>
+              
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              
+                  <!-- Row shown when there is no matching data. -->
+                  <tr class="mat-row" *matNoDataRow>
+                  <td class="mat-cell" colspan="4">Aucune correspondance trouvée pour les critères de recherche spécifiés "{{input.value}}"</td>
+                  </tr>
+              </table>
+              
+              <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+              </div>
+          </div>
       </div>
     </div>
   </div>
+</div>
 </div>
